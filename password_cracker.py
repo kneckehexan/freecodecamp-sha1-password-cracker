@@ -27,10 +27,13 @@ def crack_sha1_hash(hash, use_salts=False):
         newPasswords = []
         for s in salts:
             for p in passwords:
+                #https://forum.freecodecamp.org/t/fcc-brute-force-password-cracker-hint-to-salted/418204/3
                 passWithSalt.append(f'{p}{s}')
                 passWithSalt.append(f'{s}{p}')
                 newPasswords.append(p)
                 newPasswords.append(p)
+                # NOT THIS:
+                #passWithSalt.append(f'{s}{p}{s}')
 
         hashedPass = hashPass(passWithSalt)
         return getPwd(newPasswords, hashedPass, hash)
